@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "es2018",
+    "module": "es2015",
+    "moduleResolution": "node",
+    "outDir": "bug-fix_01/dist",
+    "strict": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true
+  },
+  "include": ["bug-fix_01/main.ts"],
+  "exclude": ["node_modules"]
+}
