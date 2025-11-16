@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Metadata Views</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./main.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <div>
+        <p class="eyebrow">Data explorer</p>
+        <h1>Build metadata views</h1>
+        <p class="lede">
+          Choose the metadata you care about, save your selection, and review it
+          later from the same screen.
+        </p>
+      </div>
+      <button id="resetApp" class="ghost">Reset all</button>
+    </header>
+
+    <main class="layout">
+      <section class="panel">
+        <div class="panel-header">
+          <div>
+            <p class="eyebrow">Step 1</p>
+            <h2>Select metadata</h2>
+          </div>
+          <span class="hint">Pick at least one field</span>
+        </div>
+
+        <label class="search">
+          <span class="sr-only">Search metadata</span>
+          <input
+            id="metadataSearch"
+            type="search"
+            placeholder="Search by name or category"
+          />
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              d="M14.5 13h-.79l-.28-.27a6 6 0 1 0-.71.71l.27.28v.79l5 5L19.49 18zM10 14a4 4 0 1 1 4-4 4 4 0 0 1-4 4z"
+            />
+          </svg>
+        </label>
+
+        <div id="metadataList" class="metadata-list" aria-live="polite"></div>
+
+        <div class="selection-preview">
+          <div class="panel-header">
+            <h3>Selected metadata</h3>
+            <span id="selectionCount">0 selected</span>
+          </div>
+          <ul id="selectedPreview" class="pill-list"></ul>
+        </div>
+
+        <form id="saveViewForm" class="save-view">
+          <label>
+            <span class="sr-only">Name your view</span>
+            <input
+              id="viewName"
+              name="viewName"
+              type="text"
+              placeholder="Give the view a name"
+              autocomplete="off"
+            />
+          </label>
+          <button type="submit" class="primary" id="saveViewButton" disabled>
+            Save view
+          </button>
+        </form>
+      </section>
+
+      <section class="panel manage">
+        <div class="panel-header">
+          <div>
+            <p class="eyebrow">Step 2</p>
+            <h2>Manage views</h2>
+          </div>
+          <span id="viewCount" class="hint">0 saved</span>
+        </div>
+
+        <div class="manage-columns">
+          <div class="view-column">
+            <h3>Saved views</h3>
+            <div
+              id="viewList"
+              class="view-list"
+              role="list"
+              aria-live="polite"
+            ></div>
+          </div>
+          <div class="view-column">
+            <h3>Preview</h3>
+            <div id="viewDetails" class="view-details">
+              <p class="hint">Select a saved view to see its metadata.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <template id="metadataItemTemplate">
+      <label class="metadata-item">
+        <span class="meta-title"></span>
+        <span class="meta-category"></span>
+        <input type="checkbox" />
+      </label>
+    </template>
+
+    <template id="viewItemTemplate">
+      <article class="view-card" role="listitem">
+        <header>
+          <div>
+            <p class="view-title"></p>
+            <p class="view-subtitle"></p>
+          </div>
+          <div class="view-actions">
+            <button class="ghost view-btn">View</button>
+            <button class="ghost delete-btn" aria-label="Delete view">✕</button>
+          </div>
+        </header>
+      </article>
+    </template>
+
+    <script type="module" src="./dist/main.js"></script>
+  </body>
+</html>
